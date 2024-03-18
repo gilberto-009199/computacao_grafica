@@ -1,0 +1,65 @@
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    margin: 0;
+    background-color: #333;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+canvas{
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 82px;
+    /* float: right; */
+    overflow: hidden;
+    display: block;
+    transform: scale(3);
+    transition: all 0.5s;
+    background: white;
+    z-index: 1;
+    position: relative;
+}
+canvas:hover{
+    transform: scale(4);
+    /* margin-right: 48px; */
+}
+.matrix{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+.matrix .line {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+.matrix .cell{
+    width: 2%;
+    height: 13px;
+    font-size: 0.56em;
+    cursor: pointer;
+    border-radius: 0;
+    background-color: rgba(0, 0, 20, 0.2);
+    border: 0;
+    display: inline;
+    text-align: center;
+    color: white;
+}
+.matrix .cell[data-value="1"]{
+    background-color: rgba(2, 2, 255, 0.651);
+}
+code{
+    white-space: pre;
+}

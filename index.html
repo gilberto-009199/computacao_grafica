@@ -159,6 +159,7 @@
                 let x, y;
                 let a = (y2 - y1) / (x2 - x1);
                 
+                
                 // Verifica se x1 é maior que x2 e troca os pontos, se necessário
                 // Perceba que esse erro ocorre tbm no codigo C/C++
                 if (x1 > x2) {
@@ -166,11 +167,21 @@
                 }
                 
                 //Tratar situação de 40° graus, y2 muito alto
-
-                for (x = x1; x <= x2; x++) {
-                    y = Math.round(y1 + a * (x - x1));
-                    util.canvas.write_pixel(x, y, color)
-                }
+                
+                /*if( x1 - x2 == 0){
+                    for (y = y1; y <= y2; y++) {
+                        x = Math.round(x1 + a * (y - y1));
+                        x = x ? x: 0;
+                        util.canvas.write_pixel(x, y, color)
+                    }
+                /*} else {*/
+                    for (x = x1; x <= x2; x++) {
+                        y = Math.round(y1 + a * (x - x1));
+                        y = y ? y: 0;
+                        util.canvas.write_pixel(x, y, color)
+                    }
+                //}
+                
             }
             function drawLine(frm){
 

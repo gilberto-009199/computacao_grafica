@@ -65,12 +65,12 @@ var util = {
 
             // Desenhando as linhas dos quadrantes Plano Cateziano  +
             
-            ctx.lineWidth = 0.3;
-
+            ctx.lineWidth = 0.05;
             ctx.moveTo(-35,0);
             ctx.lineTo(35,0);
             ctx.stroke();
-        
+
+            ctx.lineWidth = 0.05;
             ctx.moveTo(0,-35);
             ctx.lineTo(0, 35);
             ctx.stroke();     

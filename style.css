@@ -60,6 +60,13 @@ canvas:hover{
 .matrix .cell[data-value="1"]{
     background-color: rgba(2, 2, 255, 0.651);
 }
+
+.line > .cell:nth-child(36){
+    opacity:0.6;
+}
+.line:nth-child(36) > .cell{
+    opacity:0.6;
+}
 code{
     white-space: pre;
 }

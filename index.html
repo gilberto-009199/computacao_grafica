@@ -166,21 +166,22 @@
                     [x1, y1, x2, y2] = [x2, y2, x1, y1];
                 }
                 
-                //Tratar situação de 40° graus, y2 muito alto
-                
-                /*if( x1 - x2 == 0){
-                    for (y = y1; y <= y2; y++) {
-                        x = Math.round(x1 + a * (y - y1));
-                        x = x ? x: 0;
-                        util.canvas.write_pixel(x, y, color)
-                    }
-                /*} else {*/
-                    for (x = x1; x <= x2; x++) {
-                        y = Math.round(y1 + a * (x - x1));
-                        y = y ? y: 0;
-                        util.canvas.write_pixel(x, y, color)
-                    }
-                //}
+                // Tratar situação de 45° graus, y2 muito alto
+                // Verifica se a inclinação é muito acentuada (acima de 45 graus)
+                if (Math.abs(a) > 1) {
+                  for (y = y1; y <= y2; y++) {
+                     x = Math.round(x1 + (y - y1) / a);
+                     x = x ? x : 0;
+                     util.canvas.write_pixel(x, y, color);
+                  }
+                } else {
+                  // Codigo original
+                  for (x = x1; x <= x2; x++) {
+                     y = Math.round(y1 + a * (x - x1));
+                     y = y ? y : 0;
+                     util.canvas.write_pixel(x, y, color);
+                   }
+                }
                 
             }
             function drawLine(frm){

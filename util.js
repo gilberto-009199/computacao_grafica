@@ -23,6 +23,8 @@ var util = {
             };
         },
         write_pixel(row, cell, color = 'blue', pixelSize = util.canvas.pixelSize){
+            
+            //console.log("util.canvas.write_pixel", {row, cell, color});
 
             var canvas = document.querySelector(util.canvas.selector);
 
@@ -105,6 +107,37 @@ var util = {
             }
 
             util.matrix.load(matrix)
+
+            // download do conteudo do canvas
+            $(util.canvas.selector).click(function(){
+                util.canvas.download(this);
+            })
+        },
+        download(canvas = document.querySelector(util.canvas.selector)){
+
+            var dataURL = canvas.toDataURL('image/png');
+
+            // Cria uma imagem temporária para manipular o tamanho
+            var img = new Image();
+            img.onload = function() {
+                var canvasTemp = document.createElement('canvas');
+                canvasTemp.width = canvas.width * 10; // Amplia 10x a largura original
+                canvasTemp.height = canvas.height * 10; // Amplia 10x a altura original
+                var ctxTemp = canvasTemp.getContext('2d');
+                ctxTemp.drawImage(img, 0, 0, canvasTemp.width, canvasTemp.height);
+
+                // Obtém a imagem ampliada em formato de dados URL
+                var enlargedDataURL = canvasTemp.toDataURL('image/png');
+
+                // Cria um link temporário para download da imagem ampliada
+                var downloadLink = document.createElement('a');
+                downloadLink.href = enlargedDataURL;
+                downloadLink.download = Date.now()+'.canvas.png'; // Nome do arquivo para download
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            };
+            img.src = dataURL;
         }
     },
     matrix:{
@@ -150,6 +183,8 @@ var util = {
 
         /* Celula aonde o usuario faz o click */
         btnCell(elm, x, y, render = true){
+
+            if($(elm).length < 1) return console.error("Celula não encontrada!")
 
             let value       = $(elm).attr('data-value') == 1 ? 0 : 1;
             let buff        = util.matrix.buff;

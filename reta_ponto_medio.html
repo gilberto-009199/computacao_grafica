@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="./style.css" />
+
     </head>
     <body>
         <nav class="navbar navbar-dark bg-dark  navbar-expand-lg">
@@ -35,9 +36,9 @@
                         Implementações:
                     </div>
                     <div class="card-body">
-                        
+
                         <div class="list-group bg-dark text-white">
-                            <a href="index.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start active">
+                            <a href="index.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h6 class="mb-1">line(x1, y1, x2, y2, color)</h6>
                                     <small></small>
@@ -50,7 +51,7 @@
                         </div>
 
                         <div class="list-group bg-dark text-white">
-                            <a href="reta_ponto_medio.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                            <a href="reta_ponto_medio.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start active">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h6 class="mb-1">inc_line(x1, y1, x2, y2, color)</h6>
                                     <small></small>
@@ -79,7 +80,7 @@
                                 <small>void MidPointCircle(int r, int color);</small>
                             </a>
                         </div>
-
+                        
                     </div>
                 </div>
 
@@ -89,7 +90,7 @@
 
                 <div class="card bg-dark text-white">
                     <div class="card-header">
-                        Pontos e Retas:
+                        Pontos e Retas(Ponto Medio):
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -155,17 +156,30 @@
                     <div class="card-body ">
                         <h4>C/C++</h4>
                         <pre><code class="c">
-    void line(int x1, int y1, int x2, int y2, int color){   
-        int x, y;                                         
-        float a;                                          
-        int valor;                                        
-        a=(y2-y1)/(x2-x1);                                
-        for (x=x1;x<=x2;x++){                             
-            /* arredonda y */                             
-            y = (y1 + a * (x - x1));                      
-            write_pixel(x, y, color);                     
-        }/* end for */                                    
-    }/*end line */
+    void inc_line(int x1, int y1, int x2, int y2, int color){
+        int dx, dy, incE, incNE, d, x, y;
+        dx = x2 - x1;
+        dy = y2 - y1;
+        d = 2 * dy - dx; /* Valor inicial de d */
+        incE = 2 * dy; /* Incremento de E */
+        incNE = 2 * (dy - dx); /* Incremento de NE */
+        x = x1;
+        y = y1;
+        write_pixel(x, y, color);
+        while (x < x2){
+            if (d <= 0){
+                    /* Escolhe E */
+                    d = d + incE;
+                    x = x + 1;
+            }else{
+                    /* Escolhe NE */
+                    d = d + incNE;
+                    x = x + 1;
+                    y = y + 1;
+            }/* end if */
+            write_pixel(x, y, color);
+        }/* end while */
+    }/* end inc_line */
                         </code></pre>
                         <h4>JavaScript</h4>
                         <pre><code class="javascript mycode"></code></pre>
@@ -187,45 +201,38 @@
         
         <script src="./util.js"></script>
         <script>
-            function line(x1, y1, x2, y2, color = "blue") {
-                let canvas = document.getElementById('myCanvas');
-                let x, y;
-                let a = (y2 - y1) / (x2 - x1);
-                
-                
-                // [NOVO] Tratar situação de 45° graus, y2 muito alto
-                // Verifica se a inclinação é muito acentuada (acima de 45 graus)
-                if (Math.abs(a) > 1) {
-                
-                  // [NOVO] Verifica se y1 é maior que y2 e troca os pontos, se necessário
-                  // Perceba que esse erro ocorre tbm no codigo C/C++
-                  if (y1 > y2) {
-                    [x1, y1, x2, y2] = [x1, y2, x2, y1];
-                  }
-                  // [NOVO]
-                  for (y = y1; y <= y2; y++) {
-                     x = Math.round(x1 + (y - y1) / a);
-                     x = x ? x : 0;
-                     util.canvas.write_pixel(x, y, color);
-                  }
+            function inc_line(x1, y1, x2, y2, color) {
+                let dx, dy, incE, incNE, d, x, y;
+                dx = x2 - x1;
+                dy = y2 - y1;
+                d = 2 * dy - dx; // Valor inicial de d
+                incE = 2 * dy; // Incremento de E
+                incNE = 2 * (dy - dx); // Incremento de NE
+                x = x1;
+                y = y1;
+                //write_pixel(x, y, color);
+                util.canvas.write_pixel(x, y, color);
 
-                } else {
-
-                  // [NOVO] Verifica se x1 é maior que x2 e troca os pontos, se necessário
-                  // Perceba que esse erro ocorre tbm no codigo C/C++
-                  if (x1 > x2) {
-                    [x1, y1, x2, y2] = [x2, y2, x1, y1];
-                  }
-
-                  // [ANTIGO] Codigo original
-                  for (x = x1; x <= x2; x++) {
-                     y = Math.round(y1 + a * (x - x1));
-                     y = y ? y : 0;
-                     util.canvas.write_pixel(x, y, color);
-                   }
+                while (x < x2) {
+                    if (d <= 0) {
+                        // Escolhe E
+                        d = d + incE;
+                        x = x + 1;
+                    } else {
+                        // Escolhe NE
+                        d = d + incNE;
+                        x = x + 1;
+                        y = y + 1;
+                    }
+                    //write_pixel(x, y, color);
+                    util.canvas.write_pixel(x, y, color);
                 }
-                
             }
+
+            
+
+
+
             function drawLine(frm){
 
                 var formData = $(frm).serializeArray();
@@ -234,14 +241,14 @@
                 var x2 = parseInt(formData.find(item => item.name === "point2X").value);
                 var y2 = parseInt(formData.find(item => item.name === "point2Y").value);
 
-                line(x1,y1,x2, y2, 'blue');
+                inc_line(x1,y1,x2, y2, 'blue');
             }
         </script>
         <script>
 
             document.addEventListener('DOMContentLoaded', (event) => {
 
-                $('.mycode').html('\t'+line.toString());
+                $('.mycode').html('\t'+inc_line.toString());
 
                 hljs.highlightAll(); 
                 // Inicializa todos os tooltips
@@ -281,10 +288,12 @@
                     .append($('<div>').html(item.label))
                     .appendTo(ul);
                 };
+
                 util.canvas.load()
 
 
-                line(-20, -20, 28, 22, 'blue'); // Exemplo de uso
+                // Exemplo de uso
+                inc_line(-20, -20, 28, 22, 'blue'); // Exemplo de uso
 
             });
             

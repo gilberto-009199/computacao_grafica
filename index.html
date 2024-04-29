@@ -3,9 +3,11 @@
     <head>
         <META charset="utf-8"/>
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="./assets/bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/jquery-ui.min.css">
+        <link rel="stylesheet" href="./assets/default.min.css">
+        <link rel="stylesheet" href="./assets/style.css" />
+
     </head>
     <body>
         <nav class="navbar navbar-dark bg-dark  navbar-expand-lg">
@@ -80,6 +82,65 @@
                             </a>
                         </div>
 
+                        <div class="list-group bg-dark text-white">
+                            <a href="translacao.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        Translação(dx, dy)
+                                    </h6>
+                                </div>
+                                <p class="mb-1 text-white" style="font-size: 0.8em;">
+                                    Move uma poligono, com base em uma distancia.
+                                    \[ x_{novo} = { x_{original} + dx } \]
+                                    \[ y_{novo} = { y_{original} + dy } \]
+                                </p>
+                                <small>void Translacao(int dx, int dy);</small>
+                            </a>
+                        </div>
+
+                        <div class="list-group bg-dark text-white">
+                            <a href="escala.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        Escala(x, y, sx, sy, xc, yc)
+                                    </h6>
+                                </div>
+                                <p class="mb-1 text-white" style="font-size: 0.8em;">
+                                    Escala um poligono, baseado em um fator de escala.
+                                    O ponto central padrão e o (0,0).
+                                    \[ x_{novo} = { x_{centro} + (x_{original} - x_{centro}) * sx} \]
+                                    \[ y_{novo} = { y_{centro} + (y_{original} - y_{centro}) * sy} \]
+                                </p>
+                                <small>void Escala(int x, in y, int sx, int sy, int xc, int yc);</small>
+                            </a>
+                        </div>
+
+                        <div class="list-group bg-dark text-white">
+                            <a href="rotacao.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        Rotacao(x, y, rotacao, xc, yc)
+                                    </h6>
+                                </div>
+                                <p class="mb-1 text-white" style="font-size: 0.8em;">
+                                    Rotacionar um poligono.
+                                    Ponto em relação a rotação, o padrão e (0,0).
+                                    \begin{split} 
+                                        \theta &= rotacao (°) \\
+                                        x_{diff} &= { x_{original} - ( 0 - x_{centro}) } \\
+                                        y_{diff} &= { y_{original} - ( 0 - y_{centro}) } \\
+                                        
+                                        x' &= { x_{diff} \cos(\theta) - x_{diff} \sin(\theta) } \\
+                                        y' &= { y_{diff} \sin(\theta) + y_{diff} \cos(\theta) } \\
+
+                                        x'' &= { x' + x_{centro}} \\
+                                        y'' &= { y' + y_{centro}} \\
+                                    \end{split}
+                                </p>
+                                <small>void Rotacao(int x, in y, int rotacao, int xc, int yc);</small>
+                            </a>
+                        </div>
+
                     </div>
                 </div>
 
@@ -124,7 +185,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary" onclick="drawLine(document.querySelector('#frm'))">Desenhar</button>
+                                    <button type="button" class="btn btn-primary" onclick="draw(document.querySelector('#frm'))">Desenhar</button>
                                     <button type="button" class="btn btn-danger" onclick="util.canvas.load()">Resetar</button>
                                 </form>
                             </div>
@@ -176,15 +237,13 @@
 		  </div>
         </div>
         
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <!-- Inclua o CSS do Highlight.js -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
-        <!-- Inclua o JS do Highlight.js -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
         
+        <script src="./assets/jquery-3.3.1.min.js"></script>
+        <script src="./assets/popper.min.js"></script>
+        <script src="./assets/bootstrap.min.js"></script>
+        <script src="./assets/jquery-ui.min.js"></script>
+        <script src="./assets/highlight.min.js"></script>
+        <script async src="./assets/tex-mml-chtml.min.js"></script>
         <script src="./util.js"></script>
         <script>
             function line(x1, y1, x2, y2, color = "blue") {
@@ -226,23 +285,20 @@
                 }
                 
             }
-            function drawLine(frm){
+            function draw(frm){
 
                 var formData = $(frm).serializeArray();
-                var x1 = parseInt(formData.find(item => item.name === "point1X").value);
-                var y1 = parseInt(formData.find(item => item.name === "point1Y").value);
-                var x2 = parseInt(formData.find(item => item.name === "point2X").value);
-                var y2 = parseInt(formData.find(item => item.name === "point2Y").value);
+                var x1 = parseInt(formData.find(item => item.name === "point1X").value) || 0;
+                var y1 = parseInt(formData.find(item => item.name === "point1Y").value) || 0;
+                var x2 = parseInt(formData.find(item => item.name === "point2X").value) || 0;
+                var y2 = parseInt(formData.find(item => item.name === "point2Y").value) || 0;
 
                 line(x1,y1,x2, y2, 'blue');
             }
         </script>
         <script>
-
+            document.addEventListener('DOMContentLoaded', (event) => { $('.mycode').html('\t'+line.toString()); })
             document.addEventListener('DOMContentLoaded', (event) => {
-
-                $('.mycode').html('\t'+line.toString());
-
                 hljs.highlightAll(); 
                 // Inicializa todos os tooltips
                 var tooltips = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -282,7 +338,11 @@
                     .appendTo(ul);
                 };
                 util.canvas.load()
+            })
+        </script>
+        <script>
 
+            document.addEventListener('DOMContentLoaded', (event) => {
 
                 line(-20, -20, 28, 22, 'blue'); // Exemplo de uso
 

@@ -7,9 +7,14 @@
         <link rel="stylesheet" href="./assets/jquery-ui.min.css">
         <link rel="stylesheet" href="./assets/default.min.css">
         <link rel="stylesheet" href="./assets/style.css" />
-
+        
     </head>
     <body>
+        <style>
+            canvas{
+                margin-top: 57px;
+            }
+        </style>
         <nav class="navbar navbar-dark bg-dark  navbar-expand-lg">
             <a class="navbar-brand" href="#">
                 202401 - CC 6A NOITE
@@ -52,7 +57,7 @@
                         </div>
 
                         <div class="list-group bg-dark text-white">
-                            <a href="reta_ponto_medio.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start active">
+                            <a href="reta_ponto_medio.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h6 class="mb-1">inc_line(x1, y1, x2, y2, color)</h6>
                                     <small></small>
@@ -82,7 +87,6 @@
                             </a>
                         </div>
                         
-
                         <div class="list-group bg-dark text-white">
                             <a href="translacao.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
                                 <div class="d-flex w-100 justify-content-between">
@@ -100,7 +104,7 @@
                         </div>
 
                         <div class="list-group bg-dark text-white">
-                            <a href="escala.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                            <a href="escala.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start active">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h6 class="mb-1">
                                         Escala(x, y, sx, sy, xc, yc)
@@ -109,8 +113,8 @@
                                 <p class="mb-1 text-white" style="font-size: 0.8em;">
                                     Escala um poligono, baseado em um fator de escala.
                                     O ponto central padrão e o (0,0).
-                                    \[ x_{novo} = { x_{centro} + (x_{original} - x_{centro}) * sx} \]
-                                    \[ y_{novo} = { y_{centro} + (y_{original} - y_{centro}) * sy} \]
+                                    \[ x_{novo} = { x_{centro} + (x_{original} - x_{centro}) sx} \]
+                                    \[ y_{novo} = { y_{centro} + (y_{original} - y_{centro}) sy} \]
                                 </p>
                                 <small>void Escala(int x, in y, int sx, int sy, int xc, int yc);</small>
                             </a>
@@ -141,6 +145,7 @@
                                 <small>void Rotacao(int x, in y, int rotacao, int xc, int yc);</small>
                             </a>
                         </div>
+                        
                     </div>
                 </div>
 
@@ -150,38 +155,45 @@
 
                 <div class="card bg-dark text-white">
                     <div class="card-header">
-                        Pontos e Retas(Ponto Medio):
+                        Escala:
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h2 class="mb-4">Formulário de Pontos e Reta</h2>
-                                <form id="frm" >
+                                <h2 class="mb-4">Formulário de Escala:</h2>
+                                <form id="frm">
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="point1X">Ponto 1 - Coordenada X:</label>
-                                                <input type="number" min="-35" max="34" class="form-control form-control-sm" name="point1X" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="point1Y">Ponto 1 - Coordenada Y:</label>
-                                                <input type="number" min="-34" max="35" class="form-control form-control-sm" name="point1Y" required>
+                                        <div class="col-sm-8">
+                                            <div class="alert alert-danger" role="alert">
+                                                Não compensa os pontos vizinhos, so move os pontos existentes.
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="point2X">Ponto 2 - Coordenada X:</label>
-                                                <input type="number" min="-35" max="34" class="form-control form-control-sm" name="point2X" required>
+                                                <label for="point2X">Fator de escala em X(max: 34):</label>
+                                                <input type="number" min="-34" max="34" class="form-control form-control-sm" name="sx">
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-3">
                                             <div class="form-group">
-                                                <label for="point2Y">Ponto 2 - Coordenada Y:</label>
-                                                <input type="number" min="-34" max="35" class="form-control form-control-sm" name="point2Y" required>
+                                                <label for="point2Y">Fator de escala em Y(max: 34):</label>
+                                                <input type="number" min="-34" max="34" class="form-control form-control-sm" name="sy">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="point2X">Ponto de referencia em X(max: 34):</label>
+                                                <input type="number" min="-34" max="34" class="form-control form-control-sm" name="xc" value="0">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="point2Y">Ponto de referencia em Y(max: 34):</label>
+                                                <input type="number" min="-34" max="34" class="form-control form-control-sm" name="yc" value="0">
                                             </div>
                                         </div>
                                     </div>
@@ -214,33 +226,11 @@
                         Codigos:
                     </div>
                     <div class="card-body ">
-                        <h4>C/C++</h4>
-                        <pre><code class="c">
-    void inc_line(int x1, int y1, int x2, int y2, int color){
-        int dx, dy, incE, incNE, d, x, y;
-        dx = x2 - x1;
-        dy = y2 - y1;
-        d = 2 * dy - dx; /* Valor inicial de d */
-        incE = 2 * dy; /* Incremento de E */
-        incNE = 2 * (dy - dx); /* Incremento de NE */
-        x = x1;
-        y = y1;
-        write_pixel(x, y, color);
-        while (x < x2){
-            if (d <= 0){
-                    /* Escolhe E */
-                    d = d + incE;
-                    x = x + 1;
-            }else{
-                    /* Escolhe NE */
-                    d = d + incNE;
-                    x = x + 1;
-                    y = y + 1;
-            }/* end if */
-            write_pixel(x, y, color);
-        }/* end while */
-    }/* end inc_line */
-                        </code></pre>
+                        <h4>Matematica:</h4>
+                        <p>
+                            \[ x_{novo} = { x_{centro} + (x_{original} - x_{centro}) sx_{fator}} \]
+                            \[ y_{novo} = { y_{centro} + (y_{original} - y_{centro}) sy_{fator}} \]
+                        </p>
                         <h4>JavaScript</h4>
                         <pre><code class="javascript mycode"></code></pre>
                     </div>
@@ -258,53 +248,31 @@
         <script async src="./assets/tex-mml-chtml.min.js"></script>
         <script src="./util.js"></script>
         <script>
-            function inc_line(x1, y1, x2, y2, color) {
-                let dx, dy, incE, incNE, d, x, y;
-                dx = x2 - x1;
-                dy = y2 - y1;
-                d = 2 * dy - dx; // Valor inicial de d
-                incE = 2 * dy; // Incremento de E
-                incNE = 2 * (dy - dx); // Incremento de NE
-                x = x1;
-                y = y1;
-                //write_pixel(x, y, color);
-                util.canvas.write_pixel(x, y, color);
-
-                while (x < x2) {
-                    if (d <= 0) {
-                        // Escolhe E
-                        d = d + incE;
-                        x = x + 1;
-                    } else {
-                        // Escolhe NE
-                        d = d + incNE;
-                        x = x + 1;
-                        y = y + 1;
-                    }
-                    //write_pixel(x, y, color);
-                    util.canvas.write_pixel(x, y, color);
-                }
+            function escala(x, y, sx = 1, sy = 1, xc = 0, yc = 0, color = 'blue') {
+                let x_novo = parseInt(xc + (x - xc) * sx);
+                let y_novo = parseInt(yc + (y - yc) * sy);
+                util.canvas.write_pixel(x_novo, y_novo, color);
             }
-
-            
-
-
-
             function draw(frm){
 
                 var formData = $(frm).serializeArray();
-                var x1 = parseInt(formData.find(item => item.name === "point1X").value) || 0; 
-                var y1 = parseInt(formData.find(item => item.name === "point1Y").value) || 0;
-                var x2 = parseInt(formData.find(item => item.name === "point2X").value) || 0;
-                var y2 = parseInt(formData.find(item => item.name === "point2Y").value) || 0;
 
-                inc_line(x1,y1,x2, y2, 'blue');
+                var sx = parseFloat(formData.find(item => item.name === "sx").value) || 1;
+                var sy = parseFloat(formData.find(item => item.name === "sy").value) || 1;
+
+                var xc = parseFloat(formData.find(item => item.name === "xc").value) || 0;
+                var yc = parseFloat(formData.find(item => item.name === "yc").value) || 0;
+
+                $('.cell[title][data-value="1"]').each(function() {
+                    let [x, y] = $(this).attr('data-cordenada').split(',')
+                    escala(x*1, y*1, sx, sy, xc, yc);
+                });
+
             }
         </script>
         <script>
-            document.addEventListener('DOMContentLoaded', (event) => { $('.mycode').html('\t'+inc_line.toString()); })
+            document.addEventListener('DOMContentLoaded', (event) => {$('.mycode').html('\t'+escala.toString());})
             document.addEventListener('DOMContentLoaded', (event) => {
-                
                 hljs.highlightAll(); 
                 // Inicializa todos os tooltips
                 var tooltips = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -343,17 +311,34 @@
                     .append($('<div>').html(item.label))
                     .appendTo(ul);
                 };
-
                 util.canvas.load()
             })
         </script>
         <script>
-            
+
             document.addEventListener('DOMContentLoaded', (event) => {
 
                 // Exemplo de uso
-                inc_line(-20, -20, 28, 22, 'blue'); // Exemplo de uso
+                // Quadrado
+                util.canvas.write_pixel(2,  2, 'blue');
+                util.canvas.write_pixel(2,  1, 'blue');
+                util.canvas.write_pixel(2,  0, 'blue');
+                util.canvas.write_pixel(2, -1, 'blue');
+                util.canvas.write_pixel(2, -2, 'blue');
 
+                util.canvas.write_pixel( 1, 2, 'blue');
+                util.canvas.write_pixel( 0, 2, 'blue');
+                util.canvas.write_pixel(-1, 2, 'blue');
+
+                util.canvas.write_pixel(-2,  2, 'blue');
+                util.canvas.write_pixel(-2,  1, 'blue');
+                util.canvas.write_pixel(-2,  0, 'blue');
+                util.canvas.write_pixel(-2, -1, 'blue');
+                util.canvas.write_pixel(-2, -2, 'blue');
+                
+                util.canvas.write_pixel( 1, -2, 'blue');
+                util.canvas.write_pixel( 0, -2, 'blue');
+                util.canvas.write_pixel(-1, -2, 'blue');
             });
             
         </script>

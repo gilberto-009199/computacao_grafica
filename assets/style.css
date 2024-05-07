@@ -71,3 +71,35 @@ canvas:hover{
 code{
     white-space: pre;
 }
+
+#listSortable div .card{
+    margin: 8px 2px;
+}
+.card.sortable{
+    cursor: pointer;
+}
+.card.sortable:hover{
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0.9);
+}
+.card.translacao{
+    background-color: hwb(337.85deg 18.46% 27.41%);
+}
+.card.escala{
+    background-color: hwb(13.85deg 18.46% 27.41%);
+}
+.card.rotacao{
+    background-color: hwb(49.85deg 18.46% 27.41%);
+}
+.card.cizalhamento{
+    background-color: hwb(121.85deg 18.46% 27.41%);
+}
+.card.espelhamento_x{
+    background-color: hwb(157.85deg 18.46% 27.41%);
+}
+.card.espelhamento_y{
+    background-color: hwb(193.85deg 18.46% 27.41%);
+}
+.card.result{
+    background-color: hwb(229.85deg 18.46% 27.41%);
+}

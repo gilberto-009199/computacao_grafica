@@ -1,0 +1,577 @@
+<!doctype html>
+<html>
+    <head>
+        <META charset="utf-8"/>
+
+        <link rel="stylesheet" href="./assets/bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/jquery-ui.min.css">
+        <link rel="stylesheet" href="./assets/default.min.css">
+        <link rel="stylesheet" href="./assets/style.css" />
+
+        <script src="./assets/jquery-3.3.1.min.js"></script>
+        <script src="./assets/popper.min.js"></script>
+        <script src="./assets/bootstrap.min.js"></script>
+        <script src="./assets/jquery-ui.min.js"></script>
+        <script src="./assets/highlight.min.js"></script>
+        <script async src="./assets/tex-mml-chtml.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gpu.js"></script>
+
+    </head>
+    <body>
+        <style>
+            .sortable > .card-body > mjx-container {
+                font-size: 0.9em !important;
+            }
+        </style>
+        <nav class="navbar navbar-dark bg-dark  navbar-expand-lg">
+            <a class="navbar-brand" href="#">
+                202401 - CC 6A NOITE
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar">
+                </form>
+            </div>
+        </nav>
+        <div class="container-fluid" style="padding-top: 10px;">
+          <div class="row">
+
+			<div class="col-md-3 col-lg-2">    
+                <div class="card bg-dark text-white">
+                    <div class="card-header">
+                        Implementações:
+                    </div>
+                    <div class="card-body">
+                        
+                        <div class="list-group bg-dark text-white">
+                            <a href="index.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">line(x1, y1, x2, y2, color)</h6>
+                                    <small></small>
+                                </div>
+                                <p class="mb-1 text-white" style="font-size: 0.8em;">
+                                    Algoritmo simples para conversão matricial de retas. E pouco eficiente pois utiliza cálculos de ponto flutuante.
+                                </p>
+                                <small>void line(int x1, int y1, int x2, int y2, int color)</small>
+                            </a>
+                        </div>
+
+                        <div class="list-group bg-dark text-white">
+                            <a href="reta_ponto_medio.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">inc_line(x1, y1, x2, y2, color)</h6>
+                                    <small></small>
+                                </div>
+                                <p class="mb-1 text-white" style="font-size: 0.8em;">
+                                    Algoritmo de Ponto Medio Reta (também chamado de algoritmo de Bresenham) baseia-se no argumento de que um segmento de reta, ao ser plotado, deve ser contínuo, ou melhor, os pixels que compõem um segmento de reta devem ser vizinhos.
+                                </p>
+                                <small>void inc_line(int x1, int y1, int x2, int y2, int color)</small>
+                            </a>
+                        </div>
+
+                        <div class="list-group bg-dark text-white">
+                            <a href="curva_ponto.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        CirclePoints(x, y, color);<br/>
+                                        MidPointCircle(r, color);
+                                    </h6>
+                                    <small></small>
+                                </div>
+                                <p class="mb-1 text-white" style="font-size: 0.8em;">
+                                    Algoritmo de traçado de curva
+                                </p>
+                                <small>void CirclePoints(int x, int y, int color);</small>
+                                <br/>
+                                <small>void MidPointCircle(int r, int color);</small>
+                            </a>
+                        </div>
+
+                        <div class="list-group bg-dark text-white">
+                            <a href="translacao.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        Translação(dx, dy)
+                                    </h6>
+                                </div>
+                                <p class="mb-1 text-white" style="font-size: 0.8em;">
+                                    Move uma poligono, com base em uma distancia.
+                                    \[ x_{novo} = { x_{original} + dx } \]
+                                    \[ y_{novo} = { y_{original} + dy } \]
+                                </p>
+                                <small>void Translacao(int dx, int dy);</small>
+                            </a>
+                        </div>
+
+                        <div class="list-group bg-dark text-white">
+                            <a href="escala.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        Escala(x, y, sx, sy, xc, yc)
+                                    </h6>
+                                </div>
+                                <p class="mb-1 text-white" style="font-size: 0.8em;">
+                                    Escala um poligono, baseado em um fator de escala.
+                                    O ponto central padrão e o (0,0).
+                                    \[ x_{novo} = { x_{centro} + (x_{original} - x_{centro}) * sx} \]
+                                    \[ y_{novo} = { y_{centro} + (y_{original} - y_{centro}) * sy} \]
+                                </p>
+                                <small>void Escala(int x, in y, int sx, int sy, int xc, int yc);</small>
+                            </a>
+                        </div>
+
+                        <div class="list-group bg-dark text-white">
+                            <a href="rotacao.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        Rotacao(x, y, rotacao, xc, yc)
+                                    </h6>
+                                </div>
+                                <p class="mb-1 text-white" style="font-size: 0.8em;">
+                                    Rotacionar um poligono.
+                                    Ponto em relação a rotação, o padrão e (0,0).
+                                    \begin{split} 
+                                        \theta &= rotacao (°) \\
+                                        x_{diff} &= { x_{original} - ( 0 - x_{centro}) } \\
+                                        y_{diff} &= { y_{original} - ( 0 - y_{centro}) } \\
+                                        
+                                        x' &= { x_{diff} \cos(\theta) - x_{diff} \sin(\theta) } \\
+                                        y' &= { y_{diff} \sin(\theta) + y_{diff} \cos(\theta) } \\
+
+                                        x'' &= { x' + x_{centro}} \\
+                                        y'' &= { y' + y_{centro}} \\
+                                    \end{split}
+                                </p>
+                                <small>void Rotacao(int x, in y, int rotacao, int xc, int yc);</small>
+                            </a>
+                        </div>
+
+                        <div class="list-group bg-dark text-white">
+                            <a href="matriz.html" class="bg-dark text-white list-group-item list-group-item-action flex-column align-items-start active">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        Matrizes Operações
+                                    </h6>
+                                </div>
+                                <p class="mb-1 text-white" style="font-size: 0.8em;">
+                                    Matrix de Translação, Escala, Rotação, Espelhamento e Cisalhamento.
+                                </p>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-9 col-lg-10">
+
+                <div class="card bg-dark text-white">
+                    <div class="card-header">
+                        Matriz:
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h2 class="mb-4">Matrizes</h2>
+                                <form id="frm" >
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-sm-4" onclick="addOperation(this)" 
+                                                data-vars='["dx","dy"]'
+                                                data-values="[0, 0]"
+                                                data-matrix="\begin{matrix} 
+                                                1 & 0 & dx \\
+                                                0 & 1 & dy \\
+                                                0 & 0 & 1 
+                                            \end{matrix}">
+                                                    <div class="card text-light translacao sortable" data-hue="337.85">
+                                                        <div class="card-header text-center">
+                                                            Translação
+                                                        </div>
+                                                        <div class="card-body">
+                                                            \begin{matrix} 
+                                                                1 & 0 & dx \\
+                                                                0 & 1 & dy \\
+                                                                0 & 0 & 1 
+                                                            \end{matrix}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4" onclick="addOperation(this)"
+                                                    data-vars='["sx","sy"]'
+                                                    data-values="[0, 0]"
+                                                    data-matrix="\begin{matrix} 
+                                                    sx &  0 & 0 \\
+                                                    0  & sy & 0 \\
+                                                    0  &  0 & 1
+                                                \end{matrix}">
+                                                    <div class="card text-light escala sortable"  data-hue="13.85">
+                                                        <div class="card-header text-center">
+                                                            Escala
+                                                        </div>
+                                                        <div class="card-body">
+                                                            \begin{matrix} 
+                                                                sx &  0 & 0 \\
+                                                                0  & sy & 0 \\
+                                                                0  &  0 & 1
+                                                            \end{matrix}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4" onclick="addOperation(this)"
+                                                    data-vars='["theta"]'
+                                                    data-values="[0]"
+                                                    data-matrix="\begin{matrix} 
+                                                    \cos(theta) & \sin(theta) & 0 \\
+                                                    \sin(theta) & -\cos(theta) & 0 \\
+                                                    0 & 0 & 1
+                                                \end{matrix}">
+                                                    <div class="card text-light rotacao sortable"  data-hue="49.85">
+                                                        <div class="card-header text-center">
+                                                            Rotação
+                                                        </div>
+                                                        <div class="card-body">
+                                                            \begin{matrix} 
+                                                                \cos(\theta) & \sin(\theta) & 0 \\
+                                                                \sin(\theta) & -\cos(\theta) & 0 \\
+                                                                0 & 0 & 1
+                                                            \end{matrix}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-sm-4" onclick="addOperation(this)"
+                                                    data-vars='["Shx","Shy"]'
+                                                    data-values="[0, 0]"
+                                                    data-matrix="\begin{matrix} 
+                                                    1 & Shx & 0 \\
+                                                    Shy & 1 & 0 \\
+                                                    0 & 0 & 1
+                                                \end{matrix}">
+                                                    <div class="card text-light cizalhamento sortable"  data-hue="121.85">
+                                                        <div class="card-header text-center">
+                                                            Cizalhamento
+                                                        </div>
+                                                        <div class="card-body">
+                                                            \begin{matrix} 
+                                                                1 & Shx & 0 \\
+                                                                Shy & 1 & 0 \\
+                                                                0 & 0 & 1
+                                                            \end{matrix}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4" onclick="addOperation(this)" 
+                                                    data-matrix="\begin{matrix} 
+                                                    1 &  0 & 0 \\
+                                                    0 & -1 & 0 \\
+                                                    0 &  0 & 1
+                                                \end{matrix}" >
+                                                    <div class="card text-light espelhamento_x sortable" data-hue="157.85">
+                                                        <div class="card-header text-center">
+                                                            Espelhamento "X"
+                                                        </div>
+                                                        <div class="card-body">
+                                                            \begin{matrix} 
+                                                                1 &  0 & 0 \\
+                                                                0 & -1 & 0 \\
+                                                                0 &  0 & 1
+                                                            \end{matrix}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4" onclick="addOperation(this)"
+                                                    data-matrix="\begin{matrix} 
+                                                            -1 & 0 & 0 \\
+                                                             0 &  1 & 0 \\
+                                                             0 &  0 & 1
+                                                        \end{matrix}">
+                                                    <div class="card text-light espelhamento_y sortable" data-hue="193.85">
+                                                        <div class="card-header text-center">
+                                                            Espelhamento "Y"
+                                                        </div>
+                                                        <div class="card-body">
+                                                            \begin{matrix} 
+                                                                -1 & 0 & 0 \\
+                                                                 0 & 1 & 0 \\
+                                                                 0 & 0 & 1
+                                                            \end{matrix}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row example-operation" style="padding-top: 4px;">
+                                        <div class="col-sm-1">
+                                            \[  P'''' = {} \]    
+                                        </div>
+                                        <div class="col-sm-11" style="background-color: #252525; padding: 14px;border-radius: 5px;">
+                                            <div class="connectedSortable row" id="listSortable" style="min-height: 147px; width: 100%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12" id="result"></div>
+                                    </div>
+                                    <hr />
+                                    <button type="button" class="btn btn-primary" onclick="draw(document.querySelector('#frm'))">Desenhar</button>
+                                    <button type="button" class="btn btn-danger" onclick="util.canvas.load()">Resetar</button>
+                                </form>
+                            </div>
+                            <div class="col-sm-3">
+                                <canvas id="meuCanvas" width="70" height="70"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-dark text-white">
+                    <div class="card-header">
+                        Matrix (Pixels: <string id="pixelMatrix"></string>):
+                    </div>
+                    <div class="card-body" style="padding: 5px;">
+                        <div class="matrix">
+                        </div>
+                    </div>
+                    <style>
+                        
+                    </style>
+                </div>
+
+                <div class="card bg-dark text-white">
+                    
+                </div>
+                
+            </div>
+		  </div>
+        </div>
+        
+        
+        
+        <script src="./util.js"></script>
+        <script>
+            function addOperation(elm){
+                let card = $(elm).clone();
+                let operation = $(card);
+
+                operation.attr('onclick','readVars(this)');
+                
+                $('#listSortable').append(operation)
+                
+            }
+            function readVars(elm){
+                let card    = $(elm);
+                let vars    = card.attr('data-vars');
+                let matrix  = card.attr('data-matrix');
+                
+                let listVars    = JSON.parse(vars);
+                let listValues  = [];
+
+                for(let item of listVars){
+                    let result = parseFloat(prompt(`Digite o valor de ${item}:`)) || 0;
+                    listValues.push(result);
+                    matrix = matrix.replaceAll(item, result);
+                }
+                
+                card.attr('data-values', JSON.stringify(listValues));
+                card.find('.card-body').text(matrix)
+                MathJax.typeset([elm]);
+            }
+            function draw(frm){
+
+                let listMatrix = [];
+                let listOperation = [];
+
+                $('#listSortable > *').each(function(){
+                    let card = $(this);
+                    let vars = card.attr('data-vars');
+                    let values = card.attr('data-values');
+                    let matrix = card.attr('data-matrix');
+                    let listVars = vars ? JSON.parse(vars) : [];
+                    let listValues = values ? JSON.parse(values) : [];
+
+                    listOperation.push(this);
+                    listMatrix.push(util.latexToMatrix(matrix, listVars, listValues))
+                })
+                // Verify min 2 matrix
+                // @todo para consertar
+                if(listMatrix.length < 2) {
+                    let matrixResult = listMatrix[0];
+                
+                    console.log("MATRIX RESULTANTE: ", matrixResult)
+                    
+                    $('.cell[title][data-value="1"]').each(function() {
+                        
+                        let [x, y] = $(this).attr('data-cordenada').split(',')
+                        let [xNew, yNew] = util.multiplyMatrices( matrixResult, [[parseInt(x)], [parseInt(y)], [1]]);
+
+                        util.canvas.write_pixel(Math.round(xNew[0]), Math.round(yNew[0]));
+
+                    });
+                    return;
+                };
+
+                console.log(listMatrix)
+                const result = listMatrix.reduce((acc, current) => {
+                    
+                    const matrixA = current;
+
+                    if(acc.length > 0){
+                        let matrixB = acc[acc.length - 1];
+
+                        let product = util.multiplyMatrices(matrixB, matrixA);
+
+                        acc.push(product);
+
+                    } else  acc.push(matrixA);
+                    
+                    return acc;
+
+                    
+                }, []);
+
+                // iterate [  1, .....] without fist item
+                let listOperationWithoutFirst = listOperation.slice(1);
+                let resultWithoutFirst = result.slice(1);
+                for (let i = 0; i < listOperationWithoutFirst.length; i++) {
+                    // Append na linha de operação atual
+                    let operation = $(listOperationWithoutFirst[i]).clone();
+                    let resultDOM = $('#result');
+                    let exampleDOM = $('.row.example-operation').first().clone()
+
+                    // clear list 
+                    resultDOM.find('> *').remove()
+                    exampleDOM.find('.row.connectedSortable > *').remove()
+                    
+                    operation.find('.card-body').text(util.matrixToLatex(resultWithoutFirst[i]))
+
+                    // calc new color
+                    let { hue  } = util.getHwbBackgroundColor(operation.find('.card'));
+                    let { 'hue': huePrev  } = util.getHwbBackgroundColor($(listOperation[i]).find('.card'));
+                    let colorMedian = parseInt((hue*1 + huePrev*1) / 2);
+
+                    operation.find('.card').css('background-color', `hwb(${colorMedian}deg 18.46% 27.41%)`);
+
+                    operation.find('.card .card-header').text( '*' )
+
+                    exampleDOM.find('.row.connectedSortable').append(operation)
+                    
+                    // Colocar os elementos restantes depois do atual loop
+                    for (let j = i + 1; j < listOperationWithoutFirst.length; j++) {
+                        // Append na linha de operação atual para colocar as operações restantes
+                        let operationNext = $(listOperationWithoutFirst[j]).clone();
+                        exampleDOM.find('.row.connectedSortable').append(operationNext)
+                    }
+
+                    resultDOM.append(exampleDOM);
+                    MathJax.typeset([exampleDOM[0]]);
+                }
+                let matrixResult = resultWithoutFirst[listOperationWithoutFirst.length-1];
+                
+                console.log("MATRIX RESULTANTE: ", matrixResult)
+                
+                $('.cell[title][data-value="1"]').each(function() {
+                    
+                    let [x, y] = $(this).attr('data-cordenada').split(',')
+                    let [xNew, yNew] = util.multiplyMatrices( matrixResult, [[parseInt(x)], [parseInt(y)], [1]]);
+
+                    util.canvas.write_pixel(Math.round(xNew[0]), Math.round(yNew[0]));
+
+                });
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => { $('.mycode').html('\t'+line.toString()); })
+            document.addEventListener('DOMContentLoaded', (event) => {
+                hljs.highlightAll(); 
+                // Inicializa todos os tooltips
+                var tooltips = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltips.map(function (tooltipEl) {
+                    return new bootstrap.Tooltip(tooltipEl);
+                });
+
+                var availableText = [];
+                var availableLink = [];
+                // Iterar sobre os links encontrados e adicionar cada um deles como um item na lista de tags
+                $('.list-group a[href]').each(function() {
+                    let linkText = $(this).find('h6').html() +'<br>'+ $(this).find('p').html();
+                    availableText.push(linkText.trim());
+                    availableLink.push(this);
+                });
+
+                $('input[type="search"]').autocomplete({
+                    source: availableText,
+                    minLength: 0,
+                    select: function(event, ui) {
+                        let selectedIndex = availableText.indexOf(ui.item.label);
+                        let selecionado = $(availableLink[selectedIndex]);
+                        
+                        $('input[type="search"]').val(selecionado.find('h6').text().trim());
+                        
+                        selecionado[0].click()
+                        
+                    }
+                }).on('focus', function() {
+                    $(this).autocomplete('search');
+                    
+                });
+                // Função para renderizar quebra de linha na lista de sugestões
+                $.ui.autocomplete.prototype._renderItem = function(ul, item) {
+                    return $('<li>')
+                    .append($('<div>').html(item.label))
+                    .appendTo(ul);
+                };
+                util.canvas.load()
+
+                $(".connectedSortable").sortable({
+                    connectWith: ".connectedSortable"
+                }).disableSelection();
+            })
+        </script>
+        <script>
+
+            document.addEventListener('DOMContentLoaded', (event) => {
+
+                // Exemplo de uso
+                // Quadrado
+                let dx = 9, dy = 9;
+                util.canvas.write_pixel(2 + dx,  2 + dy, 'blue');
+                util.canvas.write_pixel(2 + dx,  1 + dy, 'blue');
+                util.canvas.write_pixel(2 + dx,  0 + dy, 'blue');
+                util.canvas.write_pixel(2 + dx, -1 + dy, 'blue');
+                util.canvas.write_pixel(2 + dx, -2 + dy, 'blue');
+
+                util.canvas.write_pixel( 1 + dx, 2 + dy, 'blue');
+                util.canvas.write_pixel( 0 + dx, 2 + dy, 'blue');
+                util.canvas.write_pixel(-1 + dx, 2 + dy, 'blue');
+
+                util.canvas.write_pixel(-2 + dx,  2 + dy, 'blue');
+                util.canvas.write_pixel(-2 + dx,  1 + dy, 'blue');
+                util.canvas.write_pixel(-2 + dx,  0 + dy, 'blue');
+                util.canvas.write_pixel(-2 + dx, -1 + dy, 'blue');
+                util.canvas.write_pixel(-2 + dx, -2 + dy, 'blue');
+                
+                util.canvas.write_pixel( 1 + dx, -2 + dy, 'blue');
+                util.canvas.write_pixel( 0 + dx, -2 + dy, 'blue');
+                util.canvas.write_pixel(-1 + dx, -2 + dy, 'blue');
+
+            });
+            
+
+        </script>
+        
+    </body>
+</html>

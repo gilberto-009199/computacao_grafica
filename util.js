@@ -1,5 +1,65 @@
 // utilitario 
 var util = {
+    multiplyMatrices(matrixA, matrixB) {
+        
+        let result = [];
+        for (let i = 0; i < matrixA.length; i++) {
+            result[i] = [];
+            for (let j = 0; j < matrixB[0].length; j++) {
+                let sum = 0.0;
+                for (let k = 0; k < matrixA[0].length; k++) {
+                    sum += parseFloat(matrixA[i][k]) * parseFloat(matrixB[k][j]);
+                }
+                result[i][j] = parseFloat(sum).toFixed(2);
+            }
+        }
+        
+        return result;
+    },
+    matrixToLatex(matrix) {
+        let latex = "\\begin{matrix}\n";
+        for (let i = 0; i < matrix.length; i++) {
+            for (let j = 0; j < matrix[i].length; j++) {
+                latex += matrix[i][j];
+                if (j < matrix[i].length - 1) {
+                    latex += " & ";
+                } else if (i < matrix.length - 1) {
+                    latex += " \\\\ \n";
+                }
+            }
+        }
+        latex += "\n\\end{matrix}";
+        return latex;
+    },
+    latexToMatrix(stringLatex, keys, values){
+        return stringLatex.replaceAll('\\begin{matrix}','')
+                        .replaceAll('\\end{matrix}','')
+                        .replaceAll(' ','')
+                        .replaceAll('\\','')
+                        .split('\n')
+                        .filter(item=> item.length)
+                        .map(line=> line.split('&')
+                            .map(item => {
+                                for (let i = 0; i < keys.length; i++) {
+                                    item = item.replaceAll(keys[i], values[i] || 0);
+                                }
+                                // verify cos(?), seno(?) and tang(?)
+                                // Verificações para funções trigonométricas
+                                // parseFloat(arg) * Math.PI / 180) converter radianos
+                                item = item.replace(/cos\(([^)]+)\)/g, (_, arg) => Math.cos(parseFloat(arg) * Math.PI / 180));
+                                item = item.replace(/sin\(([^)]+)\)/g, (_, arg) => Math.sin(parseFloat(arg) * Math.PI / 180));
+                                item = item.replace(/tan\(([^)]+)\)/g, (_, arg) => Math.tan(parseFloat(arg) * Math.PI / 180)); 
+
+                                // - + - = +
+                                item = item.replace('--','');
+
+                                return parseFloat(item).toFixed(2);
+                            }));
+    },
+    getHwbBackgroundColor(element) {
+        const hue = element.attr('data-hue');
+        return {hue};
+    },
     canvas:{
         selector:'#meuCanvas',
         selectorFrm:'#frm',

@@ -62,11 +62,11 @@ canvas:hover{
 }
 
 .line > .cell:nth-child(36){
-    opacity:0.7;
+    opacity:0.5;
 }
 
 .line:nth-child(36) > .cell{
-    opacity:0.7;
+    opacity:0.5;
 }
 code{
     white-space: pre;

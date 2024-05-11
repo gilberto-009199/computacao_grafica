@@ -2,18 +2,19 @@
 <html>
     <head>
         <META charset="utf-8"/>
-
+        <script async src="./assets/tex-mml-chtml.min.js"></script>
         <link rel="stylesheet" href="./assets/bootstrap.min.css">
         <link rel="stylesheet" href="./assets/jquery-ui.min.css">
         <link rel="stylesheet" href="./assets/default.min.css">
         <link rel="stylesheet" href="./assets/style.css" />
         
         <script src="./assets/jquery-3.3.1.min.js"></script>
+        
         <script src="./assets/popper.min.js"></script>
         <script src="./assets/bootstrap.min.js"></script>
         <script src="./assets/jquery-ui.min.js"></script>
         <script src="./assets/highlight.min.js"></script>
-        <script async src="./assets/tex-mml-chtml.min.js"></script>
+        
 
     </head>
     <body>
@@ -327,7 +328,7 @@
                                     </div>
                                     <hr />
                                     <button type="button" class="btn btn-primary" onclick="draw(document.querySelector('#frm'))">Desenhar</button>
-                                    <button type="button" class="btn btn-danger" onclick="util.canvas.load()">Resetar</button>
+                                    <button type="button" class="btn btn-danger" onclick="resetFrm()">Resetar</button>
                                 </form>
                             </div>
                             <div class="col-sm-3">
@@ -362,6 +363,37 @@
         
         <script src="./util.js"></script>
         <script>
+            function resetFrm(){
+                console.log("sss")
+                $('#result > *').remove()
+                $('#listSortable > *').remove()
+
+                util.canvas.load()
+
+                // Exemplo de uso
+                // Quadrado
+                let dx = 9, dy = 9;
+                util.canvas.write_pixel(2 + dx,  2 + dy, 'blue');
+                util.canvas.write_pixel(2 + dx,  1 + dy, 'blue');
+                util.canvas.write_pixel(2 + dx,  0 + dy, 'blue');
+                util.canvas.write_pixel(2 + dx, -1 + dy, 'blue');
+                util.canvas.write_pixel(2 + dx, -2 + dy, 'blue');
+
+                util.canvas.write_pixel( 1 + dx, 2 + dy, 'blue');
+                util.canvas.write_pixel( 0 + dx, 2 + dy, 'blue');
+                util.canvas.write_pixel(-1 + dx, 2 + dy, 'blue');
+
+                util.canvas.write_pixel(-2 + dx,  2 + dy, 'blue');
+                util.canvas.write_pixel(-2 + dx,  1 + dy, 'blue');
+                util.canvas.write_pixel(-2 + dx,  0 + dy, 'blue');
+                util.canvas.write_pixel(-2 + dx, -1 + dy, 'blue');
+                util.canvas.write_pixel(-2 + dx, -2 + dy, 'blue');
+                
+                util.canvas.write_pixel( 1 + dx, -2 + dy, 'blue');
+                util.canvas.write_pixel( 0 + dx, -2 + dy, 'blue');
+                util.canvas.write_pixel(-1 + dx, -2 + dy, 'blue');
+
+            }
             function addOperation(elm){
                 let card = $(elm).clone();
                 let operation = $(card);
@@ -394,6 +426,10 @@
                 let listMatrix = [];
                 let listOperation = [];
 
+                // clear list 
+                let resultDOM = $('#result');
+                resultDOM.find('> *').remove()
+
                 $('#listSortable > *').each(function(){
                     let card = $(this);
                     let vars = card.attr('data-vars');
@@ -405,6 +441,9 @@
                     listOperation.push(this);
                     listMatrix.push(util.latexToMatrix(matrix, listVars, listValues))
                 })
+
+                
+                
                 // Verify min 2 matrix
                 // @todo para consertar
                 if(listMatrix.length < 2) {
@@ -416,6 +455,8 @@
                         
                         let [x, y] = $(this).attr('data-cordenada').split(',')
                         let [xNew, yNew] = util.multiplyMatrices( matrixResult, [[parseInt(x)], [parseInt(y)], [1]]);
+
+                        console.log([x, y], ' To ', [xNew[0], yNew[0]])
 
                         util.canvas.write_pixel(Math.round(xNew[0]), Math.round(yNew[0]));
 
@@ -445,14 +486,17 @@
                 // iterate [  1, .....] without fist item
                 let listOperationWithoutFirst = listOperation.slice(1);
                 let resultWithoutFirst = result.slice(1);
+                
+                
+
                 for (let i = 0; i < listOperationWithoutFirst.length; i++) {
                     // Append na linha de operação atual
                     let operation = $(listOperationWithoutFirst[i]).clone();
-                    let resultDOM = $('#result');
+                    
                     let exampleDOM = $('.row.example-operation').first().clone()
 
-                    // clear list 
-                    resultDOM.find('> *').remove()
+                    
+                    
                     exampleDOM.find('.row.connectedSortable > *').remove()
                     
                     operation.find('.card-body').text(util.matrixToLatex(resultWithoutFirst[i]))
@@ -486,6 +530,8 @@
                     
                     let [x, y] = $(this).attr('data-cordenada').split(',')
                     let [xNew, yNew] = util.multiplyMatrices( matrixResult, [[parseInt(x)], [parseInt(y)], [1]]);
+
+                    console.log([x, y], ' To ', [xNew[0], yNew[0]])
 
                     util.canvas.write_pixel(Math.round(xNew[0]), Math.round(yNew[0]));
 

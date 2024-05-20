@@ -459,7 +459,8 @@
                         console.log([x, y], ' To ', [xNew[0], yNew[0]])
 
                         util.canvas.write_pixel(Math.round(xNew[0]), Math.round(yNew[0]));
-
+                        
+                        alert([x, y], ' To ', [xNew[0], yNew[0]]);
                     });
                     return;
                 };
@@ -535,6 +536,8 @@
 
                     util.canvas.write_pixel(Math.round(xNew[0]), Math.round(yNew[0]));
 
+                    alert([x, y], ' To ', [xNew[0], yNew[0]]);
+                    
                 });
             }
         </script>

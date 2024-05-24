@@ -232,18 +232,18 @@
                                                     data-vars='["theta"]'
                                                     data-values="[0]"
                                                     data-matrix="\begin{matrix} 
-                                                    \cos(theta) & \sin(theta) & 0 \\
-                                                    \sin(theta) & -\cos(theta) & 0 \\
+                                                    \cos(theta) & -\sin(theta) & 0 \\
+                                                    \sin(theta) & \cos(theta) & 0 \\
                                                     0 & 0 & 1
                                                 \end{matrix}">
                                                     <div class="card text-light rotacao sortable"  data-hue="49.85">
                                                         <div class="card-header text-center">
-                                                            Rotação
+                                                            Rotação Ant-H.
                                                         </div>
                                                         <div class="card-body">
                                                             \begin{matrix} 
-                                                                \cos(\theta) & \sin(\theta) & 0 \\
-                                                                \sin(\theta) & -\cos(\theta) & 0 \\
+                                                                \cos(\theta) & -\sin(\theta) & 0 \\
+                                                                \sin(\theta) & \cos(\theta) & 0 \\
                                                                 0 & 0 & 1
                                                             \end{matrix}
                                                         </div>
@@ -252,6 +252,27 @@
                                             </div>
                                             <hr />
                                             <div class="row">
+                                                <div class="col-sm-4" onclick="addOperation(this)"
+                                                    data-vars='["theta"]'
+                                                    data-values="[0]"
+                                                    data-matrix="\begin{matrix} 
+                                                    \cos(theta) & \sin(theta) & 0 \\
+                                                    -\sin(theta) & \cos(theta) & 0 \\
+                                                    0 & 0 & 1
+                                                \end{matrix}">
+                                                    <div class="card text-light rotacao sortable"  data-hue="49.85">
+                                                        <div class="card-header text-center">
+                                                            Rotação Horario
+                                                        </div>
+                                                        <div class="card-body">
+                                                            \begin{matrix} 
+                                                                \cos(\theta) & \sin(\theta) & 0 \\
+                                                                -\sin(\theta) & \cos(\theta) & 0 \\
+                                                                0 & 0 & 1
+                                                            \end{matrix}
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-sm-4" onclick="addOperation(this)"
                                                     data-vars='["Shx","Shy"]'
                                                     data-values="[0, 0]"
@@ -292,6 +313,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
+                                            </div>
+                                            <hr />
+                                            <div class="row">
                                                 <div class="col-sm-4" onclick="addOperation(this)"
                                                     data-matrix="\begin{matrix} 
                                                             -1 & 0 & 0 \\

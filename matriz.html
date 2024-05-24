@@ -458,9 +458,50 @@
 
                         console.log([x, y], ' To ', [xNew[0], yNew[0]])
 
+                        let point = $(`
+                            <div class="row mb-2 mt-2">
+                                <div class="cold-sm-1 cold-sm-4 ml-3 mr-4">
+                                    P(${x},${y}) =
+                                </div>
+                                <div class="cold-sm-6 cold-sm-4 ml-3 mr-4">
+                                    <div class="card text-light" style="background-color: #0781ff;">
+                                        <div class="card-header text-center">*</div>
+                                        <div class="card-body">
+
+                                            ${util.matrixToLatex(matrixResult)}
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cold-sm-3 cold-sm-4 ml-3 mr-4">
+
+                                    <div class="card text-light" style="background-color: rgb(47, 166, 185);">
+                                        <div class="card-header text-center">P(${x},${y})</div>
+                                        <div class="card-body">
+                                            ${ util.matrixToLatex( [[parseInt(x)], [parseInt(y)]] ) }
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="cold-sm-2 cold-sm-4 ml-3 mr-4">
+
+                                    <div class="card text-light" style="background-color: #7551e5;">
+                                        <div class="card-header text-center">P(${xNew[0]},${yNew[0]})</div>
+                                        <div class="card-body">
+                                            ${util.matrixToLatex( [xNew, yNew, 0] )}
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>`);
+
+                        resultDOM.append(point)
+
+                        MathJax.typeset([point[0]]);
+
                         util.canvas.write_pixel(Math.round(xNew[0]), Math.round(yNew[0]));
                         
-                        alert([x, y], ' To ', [xNew[0], yNew[0]]);
+                        //alert([x, y], ' To ', [xNew[0], yNew[0]]);
                     });
                     return;
                 };
@@ -496,8 +537,6 @@
                     
                     let exampleDOM = $('.row.example-operation').first().clone()
 
-                    
-                    
                     exampleDOM.find('.row.connectedSortable > *').remove()
                     
                     operation.find('.card-body').text(util.matrixToLatex(resultWithoutFirst[i]))
@@ -528,16 +567,56 @@
                 console.log("MATRIX RESULTANTE: ", matrixResult)
                 
                 $('.cell[title][data-value="1"]').each(function() {
-                    
+
                     let [x, y] = $(this).attr('data-cordenada').split(',')
                     let [xNew, yNew] = util.multiplyMatrices( matrixResult, [[parseInt(x)], [parseInt(y)], [1]]);
 
                     console.log([x, y], ' To ', [xNew[0], yNew[0]])
 
-                    util.canvas.write_pixel(Math.round(xNew[0]), Math.round(yNew[0]));
+                    let point = $(`
+                        <div class="row mb-2 mt-2">
+                            <div class="cold-sm-1 cold-sm-4 ml-3 mr-4">
+                                P(${x},${y}) =
+                            </div>
+                            <div class="cold-sm-6 cold-sm-4 ml-3 mr-4">
+                                <div class="card text-light" style="background-color: #0781ff;">
+                                    <div class="card-header text-center">*</div>
+                                    <div class="card-body">
 
-                    alert([x, y], ' To ', [xNew[0], yNew[0]]);
-                    
+                                        ${util.matrixToLatex(matrixResult)}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cold-sm-3 cold-sm-4 ml-3 mr-4">
+
+                                <div class="card text-light" style="background-color: rgb(47, 166, 185);">
+                                    <div class="card-header text-center">P(${x},${y})</div>
+                                    <div class="card-body">
+                                        ${ util.matrixToLatex( [[parseInt(x)], [parseInt(y)]] ) }
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="cold-sm-2 cold-sm-4 ml-3 mr-4">
+
+                                <div class="card text-light" style="background-color: #7551e5;">
+                                    <div class="card-header text-center">P(${xNew[0]},${yNew[0]})</div>
+                                    <div class="card-body">
+                                        ${util.matrixToLatex( [xNew, yNew, [0]] )}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>`);
+
+                    resultDOM.append(point)
+
+                    MathJax.typeset([point[0]]);
+
+                    //alert([x, y], ' To ', [xNew[0], yNew[0]]);
+
+                    util.canvas.write_pixel(Math.round(xNew[0]), Math.round(yNew[0]));
                 });
             }
         </script>

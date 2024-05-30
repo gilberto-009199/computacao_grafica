@@ -1,4 +1,4 @@
-# RA & RV
+# Computação Grafica
 
 ![pagina_home](./home.gif)
 
